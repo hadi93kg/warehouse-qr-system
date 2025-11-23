@@ -1,9 +1,7 @@
 fastapi
-uvicorn
-sqlalchemy
+uvicorn[standard]
 jinja2
-python-multipart
-qrcode
+sqlalchemy
+qrcode[pil]
 pillow
-psycopg2-binary
-python-dotenv
+python-multipart

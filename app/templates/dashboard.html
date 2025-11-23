@@ -2,39 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Dashboard - Warehouse</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>Dashboard</h1>
-    <table border="1" cellpadding="8">
+  <div class="container">
+    <header>
+      <h1>Dashboard</h1>
+      <a class="btn" href="/">Add Product</a>
+    </header>
+
+    <section class="filters">
+      <form method="get" action="/dashboard">
+        <input type="text" name="q" placeholder="Search name..." value="{{ request.query_params.get('q','') }}">
+        <button class="btn">Search</button>
+      </form>
+    </section>
+
+    <section class="table-section">
+      <table class="styled-table">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>QR Code</th>
-            </tr>
+          <tr>
+            <th>ID</th><th>Name</th><th>Description</th><th>Price</th><th>QR</th>
+          </tr>
         </thead>
         <tbody>
-            {% for p in data.products %}
-            <tr>
-                <td>{{ p.id }}</td>
-                <td>{{ p.name }}</td>
-                <td>{{ p.description or '-' }}</td>
-                <td>${{ p.price }}</td>
-                <td>
-                    {% if p.qr_code_file %}
-                        <img src="/{{ p.qr_code_file }}" width="50">
-                    {% else %}
-                        -
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
+          {% for p in products %}
+          <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.description or '-' }}</td>
+            <td>${{ p.price }}</td>
+            <td>
+              {% if p.qr_code_file %}
+                <img src="/{{ p.qr_code_file }}" width="60">
+              {% else %}
+                -
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
         </tbody>
-    </table>
-    <a href="/">Back to Home</a>
+      </table>
+    </section>
+  </div>
 </body>
 </html>

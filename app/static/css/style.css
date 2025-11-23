@@ -1,18 +1,59 @@
+/* app/static/css/style.css */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+  margin: 0;
+  padding: 0;
 }
-h1, h2 {
-    color: #333;
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(20, 20, 50, 0.08);
 }
-table {
-    border-collapse: collapse;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
 }
-th, td {
-    padding: 8px 12px;
+h1 { margin: 0; font-size: 28px; }
+.btn {
+  display: inline-block;
+  background: #4b6cff;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
 }
-img {
-    border: 1px solid #ccc;
-    padding: 2px;
-    background: #f9f9f9;
+.btn.small { padding: 6px 8px; font-size: 14px; }
+.btn.primary { background: #2563eb; }
+.form-section { margin-bottom: 20px; }
+.product-form input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #e6e9f2;
 }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff, #fcfcff);
+  border: 1px solid #eef2ff;
+}
+.card-left { flex: 1; padding-right: 12px; }
+.card-right { width: 120px; display:flex; align-items:center; justify-content:center; }
+.qr-img { width: 100px; height: 100px; object-fit: contain; }
+.price { color: #0b6e4f; font-weight: 700; margin-top: 8px; }
+.styled-table { width:100%; border-collapse: collapse; margin-top: 12px; }
+.styled-table th, .styled-table td { padding: 10px 12px; border-bottom:1px solid #eef2ff; text-align:left; }
+.qr-large { width:180px; height:180px; object-fit:contain; border: 1px solid #e6e9f2; padding:6px; background:#fff; border-radius:8px; }
