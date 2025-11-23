@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse Management</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Warehouse QR System</h1>
+    <h2>Add Product</h2>
+    <form action="/add_product" method="post">
+        <input type="text" name="name" placeholder="Product Name" required>
+        <input type="text" name="description" placeholder="Description">
+        <input type="number" name="price" placeholder="Price" required>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <h2>Products</h2>
+    <ul>
+        {% for p in products %}
+            <li>
+                {{ p.name }} - ${{ p.price }} 
+                {% if p.qr_code_file %}
+                    <img src="/{{ p.qr_code_file }}" width="100">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/dashboard">Go to Dashboard</a>
+</body>
+</html>
