@@ -2,48 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product - {{ product.name }}</title>
+    <title>{{ product.name }} - Details</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>{{ product.name }}</h1>
-      <a class="btn" href="/">Back</a>
-      <a class="btn" href="/dashboard">Dashboard</a>
-    </header>
+    <h1>{{ product.name }}</h1>
+    <p><strong>Description:</strong> {{ product.description or "-" }}</p>
+    <p><strong>Price:</strong> {{ product.price }}</p>
+    <p><strong>QR Code:</strong></p>
+    {% if product.qr_code_file %}
+        <img src="/{{ product.qr_code_file }}" alt="QR Code">
+    {% endif %}
 
-    <section class="product-detail">
-      <div class="detail-left">
-        <h2>Details</h2>
-        <p><strong>Price:</strong> ${{ product.price }}</p>
-        <p><strong>Description:</strong> {{ product.description or '-' }}</p>
-      </div>
-      <div class="detail-right">
-        {% if product.qr_code_file %}
-          <img src="/{{ product.qr_code_file }}" alt="QR code" class="qr-large">
-          <p><a class="btn small" href="/{{ product.qr_code_file }}" download>Download QR</a></p>
-        {% else %}
-          <p>No QR generated.</p>
-        {% endif %}
-      </div>
-    </section>
-
-    <section>
-      <h3>Stock History</h3>
-      <table class="styled-table">
-        <thead><tr><th>Action</th><th>Quantity</th><th>Timestamp</th></tr></thead>
+    <h2>Stock Entries</h2>
+    <table>
+        <thead>
+            <tr><th>Action</th><th>Quantity</th><th>Timestamp</th></tr>
+        </thead>
         <tbody>
-          {% for s in stock_entries %}
+            {% for entry in stock_entries %}
             <tr>
-              <td>{{ s.action }}</td>
-              <td>{{ s.quantity }}</td>
-              <td>{{ s.timestamp }}</td>
+                <td>{{ entry.action }}</td>
+                <td>{{ entry.quantity }}</td>
+                <td>{{ entry.timestamp }}</td>
             </tr>
-          {% endfor %}
+            {% endfor %}
         </tbody>
-      </table>
-    </section>
-  </div>
+    </table>
+
+    <a href="/">Back to Home</a>
 </body>
 </html>

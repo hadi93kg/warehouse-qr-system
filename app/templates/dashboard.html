@@ -2,49 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Warehouse</title>
+    <title>Dashboard - Warehouse QR</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Dashboard</h1>
-      <a class="btn" href="/">Add Product</a>
-    </header>
-
-    <section class="filters">
-      <form method="get" action="/dashboard">
-        <input type="text" name="q" placeholder="Search name..." value="{{ request.query_params.get('q','') }}">
-        <button class="btn">Search</button>
-      </form>
-    </section>
-
-    <section class="table-section">
-      <table class="styled-table">
+    <h1>Dashboard</h1>
+    <table>
         <thead>
-          <tr>
-            <th>ID</th><th>Name</th><th>Description</th><th>Price</th><th>QR</th>
-          </tr>
+            <tr>
+                <th>ID</th><th>Name</th><th>Price</th><th>Stock</th><th>QR Code</th>
+            </tr>
         </thead>
         <tbody>
-          {% for p in products %}
-          <tr>
-            <td>{{ p.id }}</td>
-            <td>{{ p.name }}</td>
-            <td>{{ p.description or '-' }}</td>
-            <td>${{ p.price }}</td>
-            <td>
-              {% if p.qr_code_file %}
-                <img src="/{{ p.qr_code_file }}" width="60">
-              {% else %}
-                -
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    {% set entries = stock_entries | selectattr("product_id","equalto",product.id) | list %}
+                    {% if entries %}
+                        {{ entries[-1].quantity }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </td>
+                <td>
+                    {% if product.qr_code_file %}
+                    <a href="/product/{{ product.id }}"><img src="/{{ product.qr_code_file }}" alt="QR" width="50"></a>
+                    {% else %}-{% endif %}
+                </td>
+            </tr>
+            {% endfor %}
         </tbody>
-      </table>
-    </section>
-  </div>
+    </table>
+    <a href="/">Add New Product</a>
 </body>
 </html>

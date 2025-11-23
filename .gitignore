@@ -1,6 +1,8 @@
 pycache/
 *.pyc
-*.db
+*.pyo
+*.pyd
+env/
 venv/
-.env
-app/static/uploads/
+*.sqlite3
+*.db

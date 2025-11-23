@@ -6,44 +6,41 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Warehouse QR System</h1>
-      <a class="btn" href="/dashboard">Go to Dashboard</a>
-    </header>
+    <h1>Warehouse QR System</h1>
+    <div class="form-container">
+        <h2>Add Product</h2>
+        <form action="/add_product" method="post">
+            <input type="text" name="name" placeholder="Product Name" required>
+            <input type="text" name="description" placeholder="Description">
+            <input type="number" name="price" placeholder="Price" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
 
-    <section class="form-section">
-      <h2>Add Product</h2>
-      <form action="/add_product" method="post" class="product-form">
-        <input type="text" name="name" placeholder="Product Name" required>
-        <input type="text" name="description" placeholder="Description">
-        <input type="number" name="price" placeholder="Price" required>
-        <button type="submit" class="btn primary">Add Product</button>
-      </form>
-    </section>
+    <div class="product-list">
+        <h2>Products</h2>
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Name</th><th>Price</th><th>QR Code</th></tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        {% if product.qr_code_file %}
+                        <a href="/product/{{ product.id }}"><img src="/{{ product.qr_code_file }}" alt="QR" width="50"></a>
+                        {% else %}-
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <section class="list-section">
-      <h2>Products</h2>
-      <div class="product-grid">
-        {% for p in products %}
-        <div class="card">
-          <div class="card-left">
-            <h3>{{ p.name }}</h3>
-            <p>{{ p.description or '-' }}</p>
-            <p class="price">${{ p.price }}</p>
-            <a class="btn small" href="/product/{{ p.id }}">View</a>
-          </div>
-          <div class="card-right">
-            {% if p.qr_code_file %}
-              <img src="/{{ p.qr_code_file }}" alt="QR" class="qr-img">
-            {% else %}
-              <div class="no-qr">No QR yet</div>
-            {% endif %}
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </section>
-  </div>
+    <a href="/dashboard">Go to Dashboard</a>
 </body>
 </html>
