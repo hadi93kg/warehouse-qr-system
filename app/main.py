@@ -8,8 +8,12 @@ from app.models.models import Product, Stock
 import qrcode
 import os
 from typing import Optional
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
 templates = Jinja2Templates(directory="app/templates")
 
 # ساخت جداول (اگر وجود ندارند)
