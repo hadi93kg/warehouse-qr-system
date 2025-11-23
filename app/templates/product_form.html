@@ -6,18 +6,25 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>{{ product.name }}</h1>
+    <h1>Product Details</h1>
+    <p><strong>ID:</strong> {{ product.id }}</p>
+    <p><strong>Name:</strong> {{ product.name }}</p>
     <p><strong>Description:</strong> {{ product.description or "-" }}</p>
     <p><strong>Price:</strong> {{ product.price }}</p>
-    <p><strong>QR Code:</strong></p>
+    
     {% if product.qr_code_file %}
-        <img src="/{{ product.qr_code_file }}" alt="QR Code">
+    <p><strong>QR Code:</strong></p>
+    <img src="/{{ product.qr_code_file }}" alt="QR Code" width="120">
     {% endif %}
 
     <h2>Stock Entries</h2>
-    <table>
+    <table border="1" cellpadding="6" cellspacing="0">
         <thead>
-            <tr><th>Action</th><th>Quantity</th><th>Timestamp</th></tr>
+            <tr>
+                <th>Action</th>
+                <th>Quantity</th>
+                <th>Timestamp</th>
+            </tr>
         </thead>
         <tbody>
             {% for entry in stock_entries %}
@@ -30,6 +37,6 @@
         </tbody>
     </table>
 
-    <a href="/">Back to Home</a>
+    <p><a href="/">Back to Home</a></p>
 </body>
 </html>

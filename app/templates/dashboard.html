@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Warehouse QR</title>
+    <title>Dashboard - Warehouse QR System</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <h1>Dashboard</h1>
-    <table>
+
+    <table border="1" cellpadding="6" cellspacing="0">
         <thead>
             <tr>
-                <th>ID</th><th>Name</th><th>Price</th><th>Stock</th><th>QR Code</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>QR Code</th>
             </tr>
         </thead>
         <tbody>
@@ -18,24 +23,20 @@
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
+                <td>{{ product.description or "-" }}</td>
                 <td>{{ product.price }}</td>
                 <td>
-                    {% set entries = stock_entries | selectattr("product_id","equalto",product.id) | list %}
-                    {% if entries %}
-                        {{ entries[-1].quantity }}
-                    {% else %}
-                        0
-                    {% endif %}
-                </td>
-                <td>
                     {% if product.qr_code_file %}
-                    <a href="/product/{{ product.id }}"><img src="/{{ product.qr_code_file }}" alt="QR" width="50"></a>
-                    {% else %}-{% endif %}
+                        <img src="/{{ product.qr_code_file }}" alt="QR" width="80">
+                    {% else %}
+                        -
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="/">Add New Product</a>
+
+    <p><a href="/">Back to Home</a></p>
 </body>
 </html>
