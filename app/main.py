@@ -3,7 +3,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from app.database import engine, Base, get_db
-from app.models import Product, Stock
+from app.models.models import Product, Stock
 import qrcode
 import os
 
