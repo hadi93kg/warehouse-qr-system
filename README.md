@@ -25,6 +25,29 @@ A complete FastAPI-based warehouse inventory system with automatic QR code gener
 3. Scan QR to open product detail page  
 4. Manage products in the dashboard  
 
+## ⚠️ Important Note about Render Free Hosting
+The live demo is hosted on Render Free Tier.  
+This service shuts down the server after a few minutes of inactivity, which resets the SQLite database.
+
+On a real VPS or paid hosting, data will remain persistent and will not be deleted.
+
+## 🚀 Possible Future Enhancements
+This project has a scalable structure and can be easily upgraded to a professional version.  
+Some upgrade possibilities include:
+
+- User authentication & admin panel
+- Product categories
+- Stock In/Out system
+- Advanced analytics and charts
+- Migration to PostgreSQL for permanent data
+- Product image upload
+- Mobile-friendly API endpoints
+- PWA (offline-ready)
+- User role management (Admin / Staff)
+
+The current version is a simple demo suitable for portfolio and testing, and can be upgraded to an enterprise-grade warehouse system.
+
+
 ## 📦 Installation & Run
 `bash
 pip install -r requirements.txt
@@ -68,6 +91,30 @@ __________________________
 2. سیستم به‌صورت خودکار QR Code تولید و ذخیره می‌کند  
 3. با اسکن QR Code وارد صفحه‌ی جزئیات محصول می‌شوید  
 4. از داشبورد می‌توانید همه محصولات را مشاهده کنید  
+
+## ⚠️ نکته مهم درباره نسخه آنلاین (Render Free)
+نسخه‌ی فعلی که روی Render میزبانی شده است، به دلیل محدودیت‌های نسخه رایگان این سرویس، پس از چند دقیقه عدم فعالیت، سرور ریست می‌شود.  
+در نتیجه داده‌ها (محصولات ثبت‌شده) ممکن است پاک شوند.
+
+در سرور واقعی (VPS یا هاست دائمی) این مشکل وجود ندارد و داده‌ها به صورت کامل ذخیره و پایدار خواهند بود.
+
+## 🚀 قابلیت‌های قابل ارتقا در نسخه حرفه‌ای
+این پروژه ساختاری استاندارد دارد و به‌راحتی می‌تواند ارتقا یابد.  
+چند ویژگی که می‌توان به نسخه حرفه‌ای اضافه کرد:
+
+- سیستم ورود و پنل مدیریت کاربران (Authentication)
+- اضافه کردن دسته‌بندی کالاها (Categories)
+- ثبت ورود/خروج کالا (Stock In/Out)
+- گزارش‌گیری پیشرفته و نمودارها
+- اتصال به دیتابیس حرفه‌ای PostgreSQL
+- آپلود عکس محصول
+- اضافه کردن API موبایل
+- نسخه PWA برای استفاده آفلاین
+- سطح دسترسی کاربران (Roles)
+
+در حال حاضر این پروژه به عنوان نسخه‌ی ساده و تستی برای رزومه و نمونه‌کار ارائه شده است و قابلیت ارتقا به نسخه سازمانی را دارد.
+
+
 
 ## 📦 نصب و راه‌اندازی
 `bash
